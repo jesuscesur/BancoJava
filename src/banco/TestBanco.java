@@ -32,6 +32,8 @@ public class TestBanco {
     
     private static void mostrarSaldo(Cuenta cuenta) {
         System.out.println("La cuenta de " + cuenta.getCliente().getNombre() + " tiene " + cuenta.getSaldo() + " euros.");
+        
+        
 
 	}
 
