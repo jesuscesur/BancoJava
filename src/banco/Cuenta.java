@@ -1,79 +1,42 @@
 package banco;
 
-public class Cuenta {
-	private int numeroCuenta;
+class Cuenta {
+	
+    private int numero;
     private double saldo;
     private Cliente cliente;
 
-    /**
-     * Constructor para crear un nuevo objeto {@code Cuenta}.
-     *
-     * @param numeroCuenta  El número único de la cuenta.
-     * @param saldoInicial El saldo inicial de la cuenta.
-     * @param cliente      El cliente titular de la cuenta.
-     */
-    public Cuenta(int numeroCuenta, double saldoInicial, Cliente cliente) {
-        this.numeroCuenta = numeroCuenta;
-        this.saldo = saldoInicial;
+    public Cuenta(int numero, double saldo, Cliente cliente) {
+        this.numero = numero;
+        this.saldo = saldo;
         this.cliente = cliente;
     }
 
-    /**
-     * Obtiene el número de la cuenta.
-     *
-     * @return El número de la cuenta.
-     */
-    public int getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    /**
-     * Obtiene el saldo actual de la cuenta.
-     *
-     * @return El saldo actual de la cuenta.
-     */
-    public double getSaldo() {
-        return saldo;
-    }
-
-    /**
-     * Establece el saldo de la cuenta.
-     *
-     * @param saldo El nuevo saldo de la cuenta.
-     */
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    /**
-     * Obtiene el cliente titular de la cuenta.
-     *
-     * @return El objeto {@code Cliente} titular de la cuenta.
-     */
     public Cliente getCliente() {
         return cliente;
     }
 
-    /**
-     * Realiza un ingreso de dinero en la cuenta, incrementando el saldo.
-     *
-     * @param cantidad La cantidad de dinero a ingresar.
-     */
-    public void ingresar(double cantidad) {
-        this.saldo += cantidad;
+    public double getSaldo() {
+        return saldo;
     }
 
-    /**
-     * Realiza un retiro de dinero de la cuenta, decrementando el saldo si hay fondos suficientes.
-     *
-     * @param cantidad La cantidad de dinero a retirar.
-     * @return {@code true} si el retiro se realizó con éxito, {@code false} si no hay suficiente saldo.
-     */
+    public void ingresar(double cantidad) {
+        saldo += cantidad;
+    }
+
     public boolean retirar(double cantidad) {
-        if (this.saldo >= cantidad) {
-            this.saldo -= cantidad;
+        if (saldo >= cantidad) {
+            saldo -= cantidad;
             return true;
         }
         return false;
+    }
+
+    public void transferir(Cuenta destino, double cantidad) {
+        if (this.retirar(cantidad)) {
+            destino.ingresar(cantidad);
+        } else {
+            System.out.println("Saldo insuficiente en la cuenta de " + this.cliente.getNombre() + " para la transferencia.");
+        }
     }
 }
