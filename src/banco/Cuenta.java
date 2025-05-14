@@ -1,38 +1,41 @@
 package banco;
 
 public class Cuenta {
-	private int numero;
+	private int numeroCuenta;
     private double saldo;
     private Cliente cliente;
 
-    
-    public Cuenta(int numero, double saldo, Cliente cliente) {
-        this.numero = numero;
-        this.saldo = saldo;
+    public Cuenta(int numeroCuenta, double saldoInicial, Cliente cliente) {
+        this.numeroCuenta = numeroCuenta;
+        this.saldo = saldoInicial;
         this.cliente = cliente;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getNumeroCuenta() {
+        return numeroCuenta;
     }
 
     public double getSaldo() {
         return saldo;
     }
 
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
     public void ingresar(double cantidad) {
-        saldo += cantidad;
+        this.saldo += cantidad;
     }
 
-    public void retirar(double cantidad) {
-        saldo -= cantidad;
+    public boolean retirar(double cantidad) {
+        if (this.saldo >= cantidad) {
+            this.saldo -= cantidad;
+            return true;
+        }
+        return false;
     }
-
-    public void transferir(Cuenta destino, double cantidad) {
-        this.retirar(cantidad);
-        destino.ingresar(cantidad);
-    }
-	
-	
-
 }
