@@ -6,7 +6,7 @@ package banco;
  * Permite crear clientes, cuentas bancarias, realizar transferencias, ingresos,
  * retiros y consultar saldos.
  *
- * @author [Tu Nombre]
+ * @author [Jesus]
  * @version 1.0
  */
 
@@ -107,6 +107,6 @@ public class TestBanco {
  * La clase {@code Cliente} representa a un cliente del banco, con información
  * como su DNI, nombre y dirección.
  *
- * @author [Tu Nombre]
+ * @author [Jesus]
  * @version 1.0
  */
